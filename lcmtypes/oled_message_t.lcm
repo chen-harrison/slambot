@@ -1,7 +1,0 @@
-struct oled_message_t
-{
-    int64_t utime;
-
-    string line1;
-    string line2;
-}

@@ -1,6 +1,0 @@
-struct reset_odometry_t
-{
-    float x;
-    float y;
-    float theta;
-}
