@@ -1,0 +1,24 @@
+LCM = lcm-gen
+
+LCMTYPES_NAMES := $(shell cd ../lcmtypes && ls *.lcm)
+
+# Construct the pathnames to the C types
+LCMTYPES_C := $(LCMTYPES_NAMES:%.lcm=%.c)
+LCMTYPES_C := $(addprefix lcmtypes/,$(LCMTYPES_C))
+# Construct the pathnames to the py types
+LCMTYPES_PY := $(LCMTYPES_NAMES:%.lcm=%.py)
+LCMTYPES_PY := $(addprefix lcmtypes/,$(LCMTYPES_PY))
+
+all: | lcmtypes $(LCMTYPES_C) $(LCMTYPES_PY)
+
+lcmtypes/%.py: ../lcmtypes/%.lcm
+	@$(LCM) -p --ppath lcmtypes $<
+
+lcmtypes/%.c: ../lcmtypes/%.lcm
+	@$(LCM) -c --c-typeinfo --c-cpath lcmtypes --c-hpath lcmtypes -x --cpp-hpath lcmtypes $<
+
+lcmtypes:
+	mkdir -p lcmtypes
+
+clean:
+	rm -rf *~ lcmtypes/*

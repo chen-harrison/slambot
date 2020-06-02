@@ -1,0 +1,40 @@
+TERMINAL 1:
+cd botlab-w20/
+. setenv.sh
+cd bin
+./botgui
+
+TERMINAL 2:
+cd botlab-w20
+. setenv.sh
+cd data
+lcm-logplayer-gui FILE.log
+
+(mapping)
+X SLAM_MAP
+x SLAM_PARTICLES
+
+(action/sensor model)
+X SLAM_MAP
+x SLAM_PARTICLES
+x SLAM_POSE
+
+TERMINAL 3:
+(mapping)
+cd botlab-w20/
+. setenv.sh
+cd bin
+./slam --mapping-only
+
+(action/sensor model)
+cd botlab-w20/
+. setenv.sh
+cd bin
+./slam --localization-only <.map file> --action-only
+
+TERMINAL 4:
+cd botlab-w20/
+. setenv.sh
+cd data
+lcm-logger -c <.log file>
+
