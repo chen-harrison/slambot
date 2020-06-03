@@ -43,4 +43,4 @@ In ``obstacle_distance_grid.cpp``, a grid is constructed where each cell holds a
 ### *A\* Search*
 In its current state, ``a_star.cpp`` currently holds a 4-directional A search algorithm that allow the robot to move around its environment as it maps it out.
 - **Cost:** 4-directional distance from the starting point
-- **Heuristic:** 4-directional distance to goal with additional obstacle distance penalty if value from obstacle distance grid falls below threshold value; grows exponentially as distance decreases
+- **Heuristic:** 4-directional distance to goal with additional obstacle distance penalty if value from obstacle distance grid falls below threshold value; grows exponentially with decreasing distance
