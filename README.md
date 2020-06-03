@@ -3,6 +3,7 @@
 
 The SLAMBot project is one of three projects I took part in for the Robotic Systems Laboratory course (ROB 550) at the University of Michigan. The goal was to use C++ program a LiDAR-equipped two-wheeled robot to map out and navigate a maze environment given no prior information. Due to the COVID-19 outbreak, the project moved from an in-person group project to an individual one done via simulation, so all implementation was done by me.
 
+
 ## Part 1: Simultaneous Localization & Mapping (SLAM)
 The first part of the project involved the implementation of a SLAM system for the robot using a particle filter, which can be categorized into mapping, acting, and sensing functionality. **All modified files for this section can be found in ``/src/slam``**.
 
@@ -32,6 +33,7 @@ In ``sensor_model.cpp``, a simplified version of the **beam_range_finder_model**
 
 In ``particle_filter.cpp``, these values are calculated, normalized for all particles, and assigned as weights. It determines the robot's position with a weighted average, and also resamples according to those weights with a low-variance resampler algorithm.
 
+
 ## Part 2: Path Planning
 The second part consisted of developing a path-planning algorithm, which uses an A* search that incorporates an additional cost based on distance to the nearest obstacle. **All modified files for this section can be found in ``/src/planning``** .
 
@@ -41,6 +43,23 @@ In ``obstacle_distance_grid.cpp``, a grid is constructed where each cell holds a
 - First implementation used 4-directional distance, then moved to infinity norm, but I may continue to modify it to improve performance
 
 ### *A\* Search*
-In its current state, ``a_star.cpp`` currently holds a 4-directional A search algorithm that allow the robot to move around its environment as it maps it out.
+In its current state, ``a_star.cpp`` currently holds a 4-directional A\* search algorithm that allow the robot to move around its environment as it maps it out.
 - **Cost:** 4-directional distance from the starting point
 - **Heuristic:** 4-directional distance to goal with additional obstacle distance penalty if value from obstacle distance grid falls below threshold value; grows exponentially with decreasing distance
+
+In ``exploration.cpp``, the A\* search is used to plan paths to "frontiers", which are a series of adjacent cells on the edge of unknown cells and known free cells that are accessible to the robot through known free space.
+
+## Full Implementation  
+While the code in its current state does not work perfectly, the complete system should operate as follows:
+- Starting in unknown environment, scan surroundings in place and find nearest frontier using Euclidean distance
+- Calculate midpoint of the frontier and use a breadth-first search to find closest free cell to it
+- Plan path, then start moving along it
+- When distance from path start is more than half of distance to goal, update list of frontiers using new map understanding and plan path to closest one - could be same one as before, or different
+- Continue updating frontier list and path with same logic until target free cell is reached
+- Find closest frontier and repeat
+- When no frontiers remain, plan path and return to start point
+
+### *Issues to be fixed*
+- 4-directional path/movement is slow and noisy, causing robot localization error to accumulate
+- Localization error causes robot to get stuck on walls it thinks are farther away
+- Unable to properly resolve final frontier, partically due to noisy mapping caused by poor localization
