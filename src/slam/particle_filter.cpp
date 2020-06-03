@@ -104,7 +104,7 @@ std::vector<particle_t> ParticleFilter::resamplePosteriorDistribution(void)
 
     for(int m = 0; m < kNumParticles_; m++)
     {
-        double u = r + ((double)m)/((double)kNumParticles_);
+        double u = r + ((double)m) / ((double)kNumParticles_);
         while(u > c)
         {
             i += 1;

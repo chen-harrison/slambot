@@ -50,6 +50,8 @@ void ObstacleDistanceGrid::setDistances(const OccupancyGrid& map)
 
         for(auto& o : oldCells)
         {
+            // 4-directional distance
+
             // Adjacent cells to check
             // std::vector<cell_t> adjCells = {cell_t((o.x - 1), o.y), cell_t((o.x + 1), o.y),
             //                                 cell_t(o.x, (o.y - 1)), cell_t(o.x, (o.y + 1))};
@@ -61,6 +63,9 @@ void ObstacleDistanceGrid::setDistances(const OccupancyGrid& map)
             //         newCells.push_back(a);
             //     }
             // }
+
+            // infinity norm
+
             for(int i = o.x-1; i <= o.x+1; i++)
             {
                 for(int j = o.y-1; j <= o.y+1; j++)
