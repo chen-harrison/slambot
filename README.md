@@ -12,8 +12,8 @@ In ``mapping.cpp``, a discretized occupancy grid map in conjunction with an inve
 - LiDAR scan is adjusted to compensate for movement using odometry reading
 - Bresenham's line algorithm determines cells occupied by each ray
   - Each cell score is initiated to ``0``
-  - If beam passes through, it's likely empty, so occupancy score is decreased
-  - If beam ends, it's likely occupied, so score is increased
+  - If beam passes through, cell is likely empty, so occupancy score is decreased
+  - If beam ends, cell is likely occupied, so score is increased
 
 <p align="center">
   <img src="media/mapping.gif" width="360">
