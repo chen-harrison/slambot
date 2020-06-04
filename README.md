@@ -66,7 +66,7 @@ With all parts now complete, we can test the full SLAM architecture in a maze, w
 </p>
 <p align="center">
   <sup><em>Full SLAM implementation used for maze exploration given path (8x speed).<br>
-  Brown arrow represent odometry, blue arrow represents SLAM pose</em></sup>
+  Brown arrow represent odometry pose, blue arrow represents SLAM pose</em></sup>
 </p>
 
 
