@@ -114,3 +114,21 @@ While the code in its current state does not work perfectly, the complete system
 - 4-directional path/movement is slow and noisy, causing robot localization error to accumulate
 - Localization error causes robot to get stuck on walls it thinks are farther away
 - Unable to properly resolve final frontier, partically due to noisy mapping caused by poor localization
+
+## Viewing .log Files
+Included in this repository are .log files containing all of the LCM messages that were passed to the GUI, and can be viewed on your own. First, make sure you have the [LCM](https://github.com/lcm-proj/lcm) on your system. After downloading or cloning the repository, navigate to the ``slambot/`` folder in two separate terminals and do the following:
+
+Terminal 1
+```
+make laptop-only
+. setenv.sh
+./bin/botgui
+```
+Terminal 2
+```
+. setenv.sh
+lcm-logplayer-gui logs/<.LOG_FILE_NAME>
+```
+
+An animation similar to the ones shown above should play in the GUI.
+  
