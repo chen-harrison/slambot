@@ -71,7 +71,7 @@ With all parts now complete, we can test the full SLAM architecture in a maze, w
 
 
 ## Part 2: Path Planning
-The second part consisted of developing a path-planning algorithm, which uses an A* search that incorporates an additional cost based on distance to the nearest obstacle. **All modified files for this section can be found in ``/src/planning``** .
+The second part consisted of developing a path planning algorithm, which uses an A* search that incorporates an additional cost based on distance to the nearest obstacle. **All modified files for this section can be found in ``/src/planning``** .
 
 ### *Obstacle Distance Grid*
 In ``obstacle_distance_grid.cpp``, a grid is constructed where each cell holds a value indicating its distance to the nearest obstacle.
