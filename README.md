@@ -53,7 +53,7 @@ In ``particle_filter.cpp``, these values are calculated, normalized for all part
   <img src="media/sensor.gif" width="360">
 </p>
 <p align="center">
-  <sup><em>Red arrow represents odometry (same as from action model), while blue arrow<br>
+  <sup><em>Brown arrow represents odometry (same as from action model) and blue arrow<br>
   represents sensor model-corrected position, which is closer to true pose<br>
   and thus yields a coherent map</em></sup>
 </p>
@@ -65,7 +65,8 @@ With all parts now complete, we can test the full SLAM architecture in a maze, w
   <img src="media/slam.gif" width="360">
 </p>
 <p align="center">
-  <sup><em>Full SLAM implementation used for maze exploration given path (8x speed)</em></sup>
+  <sup><em>Full SLAM implementation used for maze exploration given path (8x speed).<br>
+  Brown arrow represent odometry pose, blue arrow represents SLAM pose</em></sup>
 </p>
 
 
