@@ -10,7 +10,7 @@ The first part of the project involved the implementation of a SLAM system for t
 ### *Mapping*
 In ``mapping.cpp``, a discretized occupancy grid map in conjunction with an inverse sensor model is used to map out the surroundings. Operates under the assumption that location information is accurate.
 - LiDAR scan is adjusted to compensate for movement using odometry reading
-- Bresenham's line algorithm determines cells occupied by each ray
+- Bresenham's line algorithm determines cells occupied by each LiDAR beam
   - Each cell score is initiated to ``0``
   - If beam passes through, cell is likely empty, so occupancy score is decreased
   - If beam ends, cell is likely occupied, so score is increased
@@ -40,7 +40,7 @@ The initialization of the particle filter occurs in ``particle_filter.cpp`` and 
 
 ### *Sensing*
 In ``sensor_model.cpp``, a simplified version of the **beam_range_finder_model** algorithm from *Probabilistic Robotics* is used to evaluate the weight of each particle and update the robot's understanding of its position after the action model has been applied.
-- Each particle start with a log odds value of ``0.0``, and every ray (approximately 100) in the current LiDAR scan is used to increment its value
+- Each particle start with a log odds value of ``0.0``, and every beam (approximately 100) in the current LiDAR scan is used to increment its value
 - If the end of the beam...
   - **Coincides** or nearly coincides with an occupied cell: we decrease log odds by very minimally
   - Falls **before** an obstacle: we decrement odds by a larger amount, penalizing its incorrectness, though not severely due to possible noise errors or missed obstacles in current map construction
