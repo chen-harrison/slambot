@@ -120,13 +120,13 @@ Included in this repository are .log files containing all of the LCM messages th
 
 Terminal 1
 ```
-make laptop-only
+$ make laptop-only
 . setenv.sh
 ./bin/botgui
 ```
 Terminal 2
 ```
-. setenv.sh
+$ . setenv.sh
 lcm-logplayer-gui logs/<.LOG_FILE_NAME>
 ```
 
