@@ -1,7 +1,7 @@
-# SLAMBot
-<sup>NOTE: the Robotic Systems Laboratory course refers to this robot as an MBot, but I will refer to it as SLAMBot for the sake of clarity about its functionality.</sup>
+# SLAMbot
+<sup>NOTE: the Robotic Systems Laboratory course refers to this robot as an Mbot, but I will refer to it as SLAMbot for the sake of clarity about its functionality.</sup>
 
-The SLAMBot project is one of three projects I took part in for the Robotic Systems Laboratory course (ROB 550) at the University of Michigan. The goal was to use C++ program a LiDAR-equipped two-wheeled robot to map out and navigate a maze environment given no prior information. Due to the COVID-19 outbreak, the project moved from an in-person group project to an individual one done via simulation, so all implementation was done by me.
+The SLAMbot project is one of three projects I took part in for the Robotic Systems Laboratory course (ROB 550) at the University of Michigan. The goal was to use C++ program a LiDAR-equipped two-wheeled robot to map out and navigate a maze environment given no prior information. Due to the COVID-19 outbreak, the project moved from an in-person group project to an individual one done via simulation, so all implementation was done by me.
 
 
 ## Part 1: Simultaneous Localization & Mapping (SLAM)
@@ -91,6 +91,7 @@ In its current state, ``a_star.cpp`` currently holds a 4-directional A\* search 
 </p>
 
 In ``exploration.cpp``, the A\* search is used to plan paths to "frontiers", which are a series of adjacent cells on the edge of unknown cells and known free cells that are accessible to the robot through known free space.
+
 
 ## Full Implementation  
 While the code in its current state does not work perfectly, the complete system should operate as follows:
