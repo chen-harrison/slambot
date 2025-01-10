@@ -8,7 +8,7 @@ The SLAMbot project is one of three projects I took part in for the Robotic Syst
 
 The first part of the project involved the implementation of a SLAM system for the robot using a particle filter, which can be categorized into mapping, acting, and sensing functionality. **All modified files for this section can be found in ``/src/slam``**.
 
-### *Mapping*
+### Mapping
 In ``mapping.cpp``, a discretized occupancy grid map in conjunction with an inverse sensor model is used to map out the surroundings. Operates under the assumption that location information is accurate.
 - LiDAR scan is adjusted to compensate for movement using odometry reading
 - Bresenham's line algorithm determines cells occupied by each LiDAR beam
@@ -22,7 +22,7 @@ In ``mapping.cpp``, a discretized occupancy grid map in conjunction with an inve
 
 The mapping simulation above shows the occupancy grid mapping in action where the true pose is fed in, leading to an accurate mapping result.
 
-### *Acting*
+### Acting
 In ``action_model.cpp``, the **sample_motion_model_odometry** algorithm from *Probabilistic Robotics* is used to model the imprecision of odometry readings and allow the propagation of the particles through the environment.
 - Noise model is characterized by four alpha coefficients, which were tuned consistently to optimize performance
 - Algorithm uses rotation-translation rotation and applies noise at each step
@@ -34,7 +34,7 @@ Below, we observe the propagation of particle point cloud without sensor model/B
   <img src="media/action.gif" width="360">
 </p>
 
-### *Sensing*
+### Sensing
 In ``sensor_model.cpp``, a simplified version of the **beam_range_finder_model** algorithm from *Probabilistic Robotics* is used to evaluate the weight of each particle and update the robot's understanding of its position after the action model has been applied.
 - Each particle start with a log odds value of ``0.0``, and every beam (approximately 100) in the current LiDAR scan is used to increment its value
 - If the end of the beam...
@@ -52,7 +52,7 @@ In ``particle_filter.cpp``, these values are calculated, normalized for all part
 Here, the brown arrow represents odometry (same as from action model) and blue arrow represents the sensor model-corrected position, which is closer to true pose
 and thus yields a coherent map.
 
-### *Complete SLAM*
+### Complete SLAM
 With all parts now complete, we can test the full SLAM architecture in a maze, where we are given the odometry information and use it to find the SLAM pose and map our surroundings accordingly. The animation below demonstrates this (8x speed), where the brown arrow represents the odometry pose and blue arrow represents the SLAM pose.
 
 <p align="center">
@@ -64,12 +64,12 @@ With all parts now complete, we can test the full SLAM architecture in a maze, w
 
 The second part consisted of developing a path planning algorithm, which uses an A* search that incorporates an additional cost based on distance to the nearest obstacle. **All modified files for this section can be found in ``/src/planning``** .
 
-### *Obstacle Distance Grid*
+### Obstacle Distance Grid
 In ``obstacle_distance_grid.cpp``, a grid is constructed where each cell holds a value indicating its distance to the nearest obstacle.
 - Reads into occupancy grid map; all positive occupancy scores are considered obstacles and treated accordingly
 - First implementation used 4-directional distance, then moved to infinity norm, but I may continue to modify it to improve performance
 
-### *A\* Search*
+### A\* Search
 In its current state, ``a_star.cpp`` currently holds a 4-directional A\* search algorithm that allow the robot to move around its environment as it maps it out.
 - **Cost:** 4-directional distance from the starting point
 - **Heuristic:** 4-directional distance to goal with additional obstacle distance penalty if value from obstacle distance grid falls below threshold value; grows exponentially with decreasing distance
